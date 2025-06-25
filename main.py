@@ -1,8 +1,18 @@
 import streamlit as st
-from datetime import datetime
+import random
 
-st.title("📅 지금 몇 시지?")
+st.title("✊✋✌️ 가위바위보 게임")
 
-now = datetime.now()
-st.write("현재 날짜와 시간:")
-st.write(now.strftime("%Y-%m-%d %H:%M:%S"))
+user = st.selectbox("당신의 선택은?", ["가위", "바위", "보"])
+if st.button("결과 보기"):
+    comp = random.choice(["가위", "바위", "보"])
+    st.write(f"컴퓨터의 선택: {comp}")
+
+    if user == comp:
+        st.success("무승부!")
+    elif (user == "가위" and comp == "보") or \
+         (user == "바위" and comp == "가위") or \
+         (user == "보" and comp == "바위"):
+        st.success("당신이 이겼습니다!")
+    else:
+        st.error("졌습니다 ㅠㅠ")
