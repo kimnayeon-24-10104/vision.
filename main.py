@@ -50,30 +50,3 @@ if st.button("이름 생성하기"):
     playlist_name = random.choice(mood_playlists[mood])
     st.success(f"✨ 추천 플레이리스트 이름: **{playlist_name}**")
 
-}
-
-# 초성 추출 함수
-def get_chosung(text):
-    def decompose(char):
-        if re.match(r"[가-힣]", char):
-            code = ord(char) - 44032
-            cho = code // (21 * 28)
-            return chr(0x3131 + cho)  # 초성 유니코드 범위 (ㄱ~ㅎ)
-        return char
-    return [decompose(c) for c in text if re.match(r"[가-힣]", c)]
-
-# UI
-st.title("🧠 초성 기반 이름 해석기")
-
-name = st.text_input("이름을 입력하세요 (예: 민수, 지훈, 하늘)")
-
-if st.button("초성 해석하기"):
-    if not name.strip():
-        st.warning("이름을 입력해주세요!")
-    else:
-        chosungs = get_chosung(name)
-        st.markdown("### 🪄 해석 결과")
-        for ch in chosungs:
-            meaning = random.choice(chosung_map.get(ch, [f"{ch}는 특별한 힘을 지녔어요!"]))
-            st.write(f"**{ch}** → {meaning}") 
-
