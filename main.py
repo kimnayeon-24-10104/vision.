@@ -43,5 +43,5 @@ if st.button("초성 해석하기"):
         st.markdown("### 🪄 해석 결과")
         for ch in chosungs:
             meaning = random.choice(chosung_map.get(ch, [f"{ch}는 특별한 힘을 지녔어요!"]))
-            st.write(f"**{ch}** → {meaning}")
+            st.write(f"**{ch}** → {meaning}") 
 
